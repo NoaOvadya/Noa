@@ -3,7 +3,7 @@
         if (Valid()) { Login() }
     });
     if (JSON.parse(localStorage.getItem("user")) != null) {
-        window.location.href = 'MainPage.html';
+        window.location.href = 'Home.html';
     }
 });
 function Login() {
