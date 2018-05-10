@@ -54,7 +54,7 @@ function Process_Result(data) {
     if (data.d != null)
     {
         localStorage.setItem("user", JSON.stringify(data.d));
-        window.location.href = 'MainPage.html';
+        window.location.href = 'Home.html';
     }
     else {
         $("#valid").text("אימייל או סיסמה לא נכונים, נסה שוב");
