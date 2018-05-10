@@ -5,7 +5,7 @@ var animating; //flag to prevent quick multi-click glitches
 var done=false;
 $(document).ready(function () {
     $("#main").click(function () {
-        window.location.href = 'MainPage.html';
+        window.location.href = 'Home.html';
     });
     $("#schedule").click(function () {
         window.location.href = 'UpdateSchedule.html';
@@ -14,10 +14,10 @@ $(document).ready(function () {
         window.location.href = 'UpdateAlarm.html';
     });
     if (JSON.parse(localStorage.getItem("user")) != null && !(document.URL).includes("UpdateSchedule.html") && !(document.URL).includes("UpdateAlarm.html")) {
-        window.location.href = 'MainPage.html';
+        window.location.href = 'Home.html';
     }
     if (JSON.parse(localStorage.getItem("user")) == null && ((document.URL).includes("UpdateSchedule.html") || (document.URL).includes("UpdateAlarm.html"))) {
-        window.location.href = 'MainPage.html';
+        window.location.href = 'Home.html';
     }
     if ((document.URL).includes("UpdateSchedule.html")) {
         ClassSchedule();
@@ -326,7 +326,7 @@ function SendSchedule() {
 function Process_ResultS(data) {
     if (data.d != null) {
         if ((document.URL).includes("UpdateSchedule.html")) {
-            window.location.href = 'MainPage.html';
+            window.location.href = 'Home.html';
         }
         Next("sTable");
     }
@@ -431,7 +431,7 @@ function Process_ResultAlarm(data) {
         $("#error").css("color", "red");
     }
     else {
-        window.location.href = 'MainPage.html';
+        window.location.href = 'Home.html';
     }
     
 }
