@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#" />
+    <link rel="stylesheet" type="text/css" href="RegisterCSS.css">
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'></script>
+    <script type="text/javascript" src="JavaScriptR.js"></script>
+    <title></title>
+</head>
+<body>
+    <h4 id="main" class="right">חזור לעמוד הראשי</h4>
+    <h4 id="alarm" class="right">עדכן שעון מעורר</h4>
+    <!-- multistep form -->
+    <form id="msform" style="max-width: 100%">
+        <!-- fieldsets -->
+        <fieldset>
+            <h2 class="fs-title">מערכת שעות</h2>
+            <h3 class="fs-subtitle">ערוך את מערכת השעות שלך-השאר רק את המקצועות והמורים שאתה לומד איתם</h3>
+            <table id="table">
+                <thead>
+                    <tr>
+                        <th class="sSchedule"></th>
+                        <th class="schedule">ראשון</th>
+                        <th class="schedule">שני</th>
+                        <th class="schedule">שלישי</th>
+                        <th class="schedule">רביעי</th>
+                        <th class="schedule">חמישי</th>
+                        <th class="schedule">שישי</th>
+                    </tr>
+                </thead>
+                <tbody id="scheduleBody"></tbody>
+            </table>
+            <input type="button" id="sTable" class="next action-button" value="עדכן" />
+        </fieldset>
+    </form>
+</body>
+</html>
