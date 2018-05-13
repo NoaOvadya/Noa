@@ -14,7 +14,7 @@ var days = [, "ראשון", "שני", "שלישי", "רביעי", "חמישי", 
 $(document).ready(function () {        
     //call the getday or htmlchanges base on hour and day       
         if (JSON.parse(localStorage.getItem("user")) == null ) {
-            window.location.href = 'Login2.html';
+            window.location.href = 'Register2.html';
         }
         $("#schedule").click(function () {
             window.location.href = 'UpdateSchedule.html';
@@ -31,7 +31,7 @@ $(document).ready(function () {
             localStorage.setItem("changes", null);
             localStorage.setItem("todayS", null);
             localStorage.setItem("todayT", null);
-            window.location.href = 'Login2.html';
+            window.location.href = 'Register2.html';
         });
         $("#update").click(function () {
             window.location.href = 'UpdateSchedule.html';
@@ -50,41 +50,10 @@ $(document).ready(function () {
             if (!localStorage.getItem("vacation"))
                 HtmlChanges();            
     }
-            ls = JSON.parse(localStorage.getItem("user"));
-            name = ls.firstName +" "+ ls.lastName;
-            $("#user").text("שלום" + " " + name);
             if ($("#alarmSwitch").value()) {
                 Calender();
             }            
 })
-function ClassUp() {
-    user = JSON.parse(localStorage.getItem("user"));
-    if (user.layer!=12) {
-        user.layer++;
-    }
-    var params = JSON.stringify({ email: user.email, layer: user.layer });
-    $.ajax({
-        type: "POST",
-        dataType: "json",
-        data: params,
-        contentType: "application/json; charset=utf-8",
-        url: "WebService1.asmx/UpdateLayer",
-        success: Process_ResultUp,
-        error: Process_Error
-    });    
-}
-function Process_ResultUp(data) {
-    if (data.d != null) {
-        //saves new user in local storage
-        localStorage.setItem("user", JSON.stringify(data.d));
-        Next("register");
-    }
-    else {
-        alert("error")
-        //$("#valid").text("שגיאה");
-        //$("#valid").css("color", "red");
-    }
-}
 
 function IsVacation()
 {
@@ -125,43 +94,28 @@ function Process_ResultV(data) {
 }
 function GetDay()
 {
-    //get schedule of the day from data base
-    //call the HtmlChanges function(in the procces result)
-    email = JSON.parse(localStorage.getItem("user")).email;
+    //get schedule of the day from local storage
+    //call the HtmlChanges function(in the procces result)    
     var temp = new Date();
     var day = temp.getDay() + 1;
     if (temp.hours >= 21)
         day++;
     if (day != 7)
-    {
-        var params = JSON.stringify({ day: day, email: email});
-            $.ajax({
-                type: "POST",
-                dataType: "json",
-                data: params,
-                contentType: "application/json; charset=utf-8",
-                url: "WebService1.asmx/GetDay",
-                success: Process_Result,
-                error: Process_Error
-            });
-    }    
-}
-function Process_Result(data)
-{
-    if(data!=null)
-    {
-        var temp = new Date();
-        var day = temp.getDay() + 1;
-        localStorage.setItem("subject", JSON.stringify(data.d.subject));
-        localStorage.setItem("teacher", JSON.stringify(data.d.teacher));
+    {        
         localStorage.setItem("day", day);
         $("#title").text("מערכת ליום "+days[day]);
         HtmlChanges();
+    }  
+    else
+    {
+        $("#title").text("תתביישו לכם שבת היום");
     }
 }
+
 function Process_Error()
 {
-    alert("שגיאה");
+    localStorage.setItem("vacation", false);
+    GetDay();
 }
 function HtmlChanges() {
     //gets html of changes of the day from school website and send them to TodayChanges
@@ -193,8 +147,9 @@ function TodayChanges(data) {
 }
 function Today()
 {
-    subject = JSON.parse(localStorage.getItem("subject"));
-    teacher = JSON.parse(localStorage.getItem("teacher"));
+    day=JSON.parse(localStorage.getItem("day"));
+    subject = JSON.parse(localStorage.getItem("subject"))[day];
+    teacher = JSON.parse(localStorage.getItem("teacher"))[day];
     changes = JSON.parse(localStorage.getItem("changes"));
     var ttemp, canceled=false;
     for (var i = 1; i < changes.length; i++) {
