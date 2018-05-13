@@ -1,4 +1,3 @@
-﻿//jQuery time
 var current_fs, next_fs, previous_fs; //fieldsets
 var left, opacity, scale; //fieldset properties which we will animate
 var animating; //flag to prevent quick multi-click glitches
@@ -75,115 +74,12 @@ function Next(state)
         ClassSchedule();
     }
 }
-    //creat account
-    function Register()
-    {
-        if (Valid()) {
-            EmailAvailable();
-        }
-    }
-    function RegisterDB(data) { 
-        //creat new user(send him to the data base)
-        if (data.d)
-        {
-            var params = JSON.stringify({ email: $("#email").val(), firstName: $("#firstName").val(), lastName: $("#lastName").val(), layer: $("#layer").val(), clas: $("#class").val(), password: $("#password").val() });
-                            $.ajax({
-                                type: "POST",
-                                dataType: "json",
-                                data: params,
-                                contentType: "application/json; charset=utf-8",
-                                url: "WebService1.asmx/Register",
-                                success: Process_Result,
-                                error: Process_Error
-                            });     
-        }
-        else
-        {
-            $("#title").text("אימייל תפוס");
-            $("#valid").css("color", "red");
-        }
-    }
-    function Valid() {
-        //checks that all fields are legal
-        email = $("#email").val()
-        if (email == "") {
-            $("#valid").text("יש להכניס אימייל");
-            $("#valid").css("color", "red");
-            return false;
-        }
-        else {
-            if (email.match(/\S@{1}\S/g) == null || email.match(/(^A-z|^0-9)/) != null) {
-                $("#valid").text("אימייל לא תקין");
-                $("#valid").css("color", "red");
-                return false;
-            }
-        }
-        if ($("#firstName").val() == "" || $("#lastName").val() == "")
-        {
-            $("#valid").text("יש להכניס שם מלא");
-            $("#valid").css("color", "red");
-            return false;
-        }        
-        password = $("#password").val();
-        re = $("#repassword").val();
-        if (password == "") {
-            $("#valid").text("יש להכניס סיסמה ");
-            $("#valid").css("color", "red");
-            return false;
-        }
-        else {
-            if (password.match(/(^A-z|^0-9)/g) != null || password.length < 6) {
-                $("#valid").text("סיסמה לא תקינה(סיסמה צריכה להיות בעלת שישה תווים לפחות המורכבים מאותיות באנגלית ומספרים בלבד");
-                $("#valid").css("color", "red");
-                return false;
-            }
-            if (re == "") {
-                $("#valid").text("יש לחזור על הסיסמה");
-                $("#valid").css("color", "red");
-                return false;
-            }
-            if (password != re) {
-                $("#valid").text("סיסמאות לא תואמות");
-                $("#valid").css("color", "red");
-                return false;
-            }
-        }
-        $("#valid").text("");
-        $("#valid").css("color", "black");
-        return true;
-    }
-    function EmailAvailable() {
-        //checks if email avilable(the is not in the data base already)
-        var params = JSON.stringify({ email: $("#email").val() });
-        $.ajax({
-            type: "POST",
-            dataType: "json",
-            data: params,
-            contentType: "application/json; charset=utf-8",
-            url: "WebService1.asmx/EmailAvailable",
-            success: RegisterDB,
-            error: Error
-        });
-    }
-    function Error() {
-        alert("server problem")
-    }
-    function Process_Result(data) {
-        if (data.d != null)
-        {
-            //saves new user in local storage
-            localStorage.setItem("user", JSON.stringify(data.d));            
-            Next("register");
-        }
-        else
-        {
-            $("#valid").text("שגיאה");
-            $("#valid").css("color", "red");
-        } 
-    }
-    function Process_Error(data) {
-        alert("שגיאת שרת, נסה שוב מאוחר יותר");
-    }
+//creat account
+function Register()
+{
+    localStorage.setItem("user", JSON.stringify({layer:$("#layer").val(),clas:$("#clas").val()}));            
+    Next("register");
+} 
 
 function Previous(state) {
     if (animating) return false;
@@ -303,41 +199,21 @@ function Day(date, weeklyHours) {
     return day;
 }
 function SendSchedule() {
-    //send schedule to data base
-    email = JSON.parse(localStorage.getItem("user")).email;
+    //saves schedule in local storage
+    subject=[];
+    teacher=[];
     for (var i = 1; i <= 6; i++) {
-        subject = GetDayFromTable(i);
-        teacher = GetTeacherFromTable(i);
-        var params = JSON.stringify({ day: i, email: email, subject: subject, teacher: teacher });
-        $.ajax({
-            type: "POST",
-            dataType: "json",
-            data: params,
-            contentType: "application/json; charset=utf-8",
-            url: "WebService1.asmx/SetDay",
-            success: Process_ResultS,
-            error: Process_ErrorS
-        });
-        //localStorage.setItem("subjects" + i, JSON.stringify(subject));
-        //localStorage.setItem("teacher" + i, JSON.stringify(teacher));
+        subject[i] = GetDayFromTable(i);
+        teacher[i] = GetTeacherFromTable(i);                
     }
-
-}
-function Process_ResultS(data) {
-    if (data.d != null) {
-        if ((document.URL).includes("UpdateSchedule.html")) {
+    localStorage.setItem("subject", JSON.stringify(subject));
+    localStorage.setItem("teacher", JSON.stringify(teacher));
+    if ((document.URL).includes("UpdateSchedule.html")) {
             window.location.href = 'Home.html';
         }
-        Next("sTable");
-    }
-    else {
-        $("#valid").text("שגיאה");
-        $("#valid").css("color", "red");
-    }
+    Next("sTable");
 }
-function Process_ErrorS(data) {
-    alert("got Error response from server");
-}
+
 function GetDayFromTable(day) {//gets daily subjects from table
     clas = ["", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty"];
     var temp;
@@ -412,33 +288,6 @@ function Manual()
         if (temp != "")
             arr[i]=temp;
     }    
-    email=JSON.parse(localStorage.getItem("user")).email;
-    var params = JSON.stringify({email:email, wakeUp:arr});
-    $.ajax({
-        type: "POST",
-        dataType: "json",
-        data: params,
-        contentType: "application/json; charset=utf-8",
-        url: "WebService1.asmx/SetAlarms",
-        success: Process_ResultAlarm,
-        error: Process_ErrorAlarm
-    });
+    localStorage.setItem("wakeup", JSON.stringify(arr));
+    window.location.href = 'Home.html';
 }
-function Process_ResultAlarm(data) {
-    if (data.d == null)
-    {
-        $("#error").text("שגיאה, נסה שוב");
-        $("#error").css("color", "red");
-    }
-    else {
-        window.location.href = 'Home.html';
-    }
-    
-}
-function Process_ErrorAlarm()
-{
-    $("#error").text("שגיאת שרת, נסה שוב");
-    $("#error").css("color", "red");
-}
-
-
