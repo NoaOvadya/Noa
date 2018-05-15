@@ -268,6 +268,10 @@ function Calender()
     
 
 }
+function WakeUp()
+{
+    return JSON.parse(localStorage.getItem("wakeup"))[StartHour()-1];    
+}
 //function Alarm()
 //{
 //    email = JSON.parse(localStorage.getItem("user")).email;
