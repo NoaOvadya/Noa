@@ -127,7 +127,7 @@ function ClassSchedule() {
     $.get('https://allorigins.me/get?method=raw&url=' + encodeURIComponent(purl),
         function (data) {
             //$("#info").text(function () { return data.contents });
-            BuildSchedule(data.contents.match(/<tbody>[\s|\S]*?<\/tbody>/));
+            BuildSchedule(data.match(/<tbody>[\s|\S]*?<\/tbody>/));
         });
 }
 function BuildSchedule(data) {
