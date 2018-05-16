@@ -124,8 +124,7 @@ function ClassSchedule() {
     //layer = 12;
     //clas = 5;    
     var purl = "http://ohel-shem.com/portal6/pub/schedule/index.php?layer=" + layer + "&class=" + clas;
-    $.getJSON('https://whateverorigin.org/get?url=' +
-        encodeURIComponent(purl) + '&callback=?',
+    $.getJSON('https://allorigins.me/get?url=' + encodeURIComponent(purl),
         function (data) {
             //$("#info").text(function () { return data.contents });
             BuildSchedule(data.contents.match(/<tbody>[\s|\S]*?<\/tbody>/));
