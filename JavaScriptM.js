@@ -122,7 +122,7 @@ function HtmlChanges() {
     layer=JSON.parse(localStorage.getItem("user")).layer;
     clas = JSON.parse(localStorage.getItem("user")).clas;
     var purl = "https://ohel-shem.com/portal6/pub/schedule/live.php?layer=" + layer + "&class=" + clas;
-    $.getJSON('https://allorigins.me/get?url=' + encodeURIComponent(purl),
+    $.getJSON('https://allorigins.me/get?charset=ISO-8859-1&url='+ encodeURIComponent(purl),
         function (data) {
             TodayChanges(data.contents.match(/<tbody>[\s|\S]*?<\/tbody>/));
         });
