@@ -48,8 +48,9 @@ $(document).ready(function () {
         //}        
         //else {
            // if (!localStorage.getItem("vacation"))
-                HtmlChanges();            
+               // HtmlChanges();            
     //}
+    GetDay();
             if ($("#alarmSwitch").is(':checked')) {
                 Calender();
             }            
