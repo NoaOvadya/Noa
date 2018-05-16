@@ -122,8 +122,7 @@ function HtmlChanges() {
     layer=JSON.parse(localStorage.getItem("user")).layer;
     clas = JSON.parse(localStorage.getItem("user")).clas;
     var purl = "http://ohel-shem.com/portal6/pub/schedule/live.php?layer=" + layer + "&class=" + clas;
-    $.getJSON('https://whateverorigin.org/get?url=' +
-        encodeURIComponent(purl) + '&callback=?',
+    $.getJSON('https://allorigins.me/get?url=' + encodeURIComponent(purl),
         function (data) {
             TodayChanges(data.contents.match(/<tbody>[\s|\S]*?<\/tbody>/));
         });
