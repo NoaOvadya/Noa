@@ -77,7 +77,7 @@ function Next(state)
 //creat account
 function Register()
 {
-    localStorage.setItem("user", JSON.stringify({layer:$("#layer").val(),clas:$("#clas").val()}));            
+    localStorage.setItem("user", JSON.stringify({layer:$("#layer").val(),clas:$("#class").val()}));            
     Next("register");
 } 
 
@@ -126,7 +126,7 @@ function ClassSchedule() {
     var purl = "https://ohel-shem.com/portal6/pub/schedule/index.php?layer=" + layer + "&class=" + clas;
     $.getJSON('https://allorigins.me/get?url=' + encodeURIComponent(purl), function(data){
    //alert(data.contents);
-   $(".fs-subtitle").html(data.contents);
+   //$(".fs-subtitle").html(data.contents);
    BuildSchedule(data.contents.match(/<tbody>[\s|\S]*?<\/tbody>/));
 });
      
