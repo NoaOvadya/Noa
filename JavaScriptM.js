@@ -42,14 +42,14 @@ $(document).ready(function () {
         if (h>16) {
             day+=1;
         }        
-        if (localStorage.getItem("day") != day && (h >= 21 || h<16))
-        {
-            IsVacation();            
-        }        
-        else {
-            if (!localStorage.getItem("vacation"))
+        //if (localStorage.getItem("day") != day && (h >= 21 || h<16))
+        //{
+         //   IsVacation();            
+        //}        
+        //else {
+           // if (!localStorage.getItem("vacation"))
                 HtmlChanges();            
-    }
+    //}
             if ($("#alarmSwitch").is(':checked')) {
                 Calender();
             }            
