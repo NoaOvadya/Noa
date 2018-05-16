@@ -124,11 +124,10 @@ function ClassSchedule() {
     //layer = 12;
     //clas = 5;    
     var purl = "https://ohel-shem.com/portal6/pub/schedule/index.php?layer=" + layer + "&class=" + clas;
-    $.get('https://allorigins.me/get?method=raw&url=' + encodeURIComponent(purl),
-        function (data) {
-            //$("#info").text(function () { return data.contents });
-            BuildSchedule(data.match(/<tbody>[\s|\S]*?<\/tbody>/));
-        });
+    $.getJSON('https://allorigins.me/get?charset=ISO-8859-1&url=' + encodeURIComponent(purl) + '&callback=?')
+.done(function (data) {
+  BuildSchedule(data.contents.match(/<tbody>[\s|\S]*?<\/tbody>/));
+    });    
 }
 function BuildSchedule(data) {
     //gets html of class and analyze them into an array[0]=teachers,[1]=classes(first hour at place 1)  
