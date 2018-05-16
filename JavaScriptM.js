@@ -121,7 +121,7 @@ function HtmlChanges() {
     //gets html of changes of the day from school website and send them to TodayChanges
     layer=JSON.parse(localStorage.getItem("user")).layer;
     clas = JSON.parse(localStorage.getItem("user")).clas;
-    var purl = "http://ohel-shem.com/portal6/pub/schedule/live.php?layer=" + layer + "&class=" + clas;
+    var purl = "https://ohel-shem.com/portal6/pub/schedule/live.php?layer=" + layer + "&class=" + clas;
     $.getJSON('https://allorigins.me/get?url=' + encodeURIComponent(purl),
         function (data) {
             TodayChanges(data.contents.match(/<tbody>[\s|\S]*?<\/tbody>/));
