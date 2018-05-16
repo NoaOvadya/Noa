@@ -50,7 +50,7 @@ $(document).ready(function () {
             if (!localStorage.getItem("vacation"))
                 HtmlChanges();            
     }
-            if ($("#alarmSwitch").value()) {
+            if ($("#alarmSwitch").is(':checked')) {
                 Calender();
             }            
 })
