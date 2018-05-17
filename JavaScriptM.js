@@ -135,8 +135,8 @@ function TodayChanges(data) {
 function Today()
 {
     day=JSON.parse(localStorage.getItem("day"));
-    subject = JSON.parse(localStorage.getItem("subject"))[day-1];
-    teacher = JSON.parse(localStorage.getItem("teacher"))[day-1];
+    subject = JSON.parse(localStorage.getItem("subject"))[day];
+    teacher = JSON.parse(localStorage.getItem("teacher"))[day];
     changes = JSON.parse(localStorage.getItem("changes"));
     var ttemp, canceled=false;
     for (var i = 1; i < changes.length; i++) {
