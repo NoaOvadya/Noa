@@ -137,7 +137,7 @@ function Today()
     day=JSON.parse(localStorage.getItem("day"));
     subject = JSON.parse(localStorage.getItem("subject"))[day-1];
     teacher = JSON.parse(localStorage.getItem("teacher"))[day-1];
-    //changes = JSON.parse(localStorage.getItem("changes"));
+    changes = JSON.parse(localStorage.getItem("changes"));
     var ttemp, canceled=false;
     for (var i = 1; i < changes.length; i++) {
         if(changes[i]!="no change" && teacher[i]!="")
