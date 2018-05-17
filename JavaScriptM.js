@@ -33,14 +33,26 @@ $(document).ready(function () {
             localStorage.setItem("todayT", null);
             window.location.href = 'Register2.html';
         });
+        if(localStorage.getItem("alarm")!=null && !localStorage.getItem("alarm"))
+        {
+            $(".switch").append(<input id="alarmSwitch" type="checkbox" ><span class="slider round"></span>)   
+        }
+        else{
+           $(".switch").append(<input id="alarmSwitch" type="checkbox" checked><span class="slider round"></span>)   
+        }
         $("#update").click(function () {
             window.location.href = 'UpdateSchedule.html';
         });
         var temp = new Date();
         IsVacation();      
         if ($("#alarmSwitch").is(':checked')) {
+            localStorage.setItem("alarm", true);
             Calender();
-        }            
+        }    
+        else
+        {
+            localStorage.setItem("alarm", false);
+        }
 })
 
 function IsVacation()
