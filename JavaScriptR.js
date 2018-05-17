@@ -226,15 +226,15 @@ function GetDayFromTable(day) {//gets daily subjects from table
     return clas;
 }
 function GetTeacherFromTable(day) {//gets daily teachers from table
-    teacher = ["", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty"];
+    teach= ["", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty", "empty"];
     var temp;
     for (var i = 1; i <= 12; i++) {
         temp = $(".teacher.day" + day + ".hour" + i).text();
         temp = temp.replace(/'/, "");
         if (temp != "")
-            teacher[i] = temp;
+            teach[i] = temp;
     }
-    return teacher;
+    return teach;
 }
 
 //clock
