@@ -38,22 +38,10 @@ $(document).ready(function () {
         });
         var temp = new Date();
         var h = temp.getHours();
-        var day = temp.getDay();
-        if (h>16) {
-            day+=1;
-        }        
-        //if (localStorage.getItem("day") != day && (h >= 21 || h<16))
-        //{
-         //   IsVacation();            
-        //}        
-        //else {
-           // if (!localStorage.getItem("vacation"))
-               // HtmlChanges();            
-    //}
-    GetDay();
-            if ($("#alarmSwitch").is(':checked')) {
-                Calender();
-            }            
+        var day = temp.getDay()+1;           
+        if ($("#alarmSwitch").is(':checked')) {
+            Calender();
+        }            
 })
 
 function IsVacation()
@@ -100,7 +88,7 @@ function GetDay()
     var temp = new Date();
     var day = temp.getDay() + 1;
     if (temp.hours >= 21)
-        day++;
+        day=day+1;
     if (day != 7)
     {        
         localStorage.setItem("day", day);
@@ -148,9 +136,9 @@ function TodayChanges(data) {
 function Today()
 {
     day=JSON.parse(localStorage.getItem("day"));
-    subject = JSON.parse(localStorage.getItem("subject"))[day];
-    teacher = JSON.parse(localStorage.getItem("teacher"))[day];
-    changes = JSON.parse(localStorage.getItem("changes"));
+    subject = JSON.parse(localStorage.getItem("subject"))[day-1];
+    teacher = JSON.parse(localStorage.getItem("teacher"))[day-1];
+    //changes = JSON.parse(localStorage.getItem("changes"));
     var ttemp, canceled=false;
     for (var i = 1; i < changes.length; i++) {
         if(changes[i]!="no change" && teacher[i]!="")
