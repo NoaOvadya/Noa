@@ -37,7 +37,7 @@ $(document).ready(function () {
             window.location.href = 'UpdateSchedule.html';
         });
         var temp = new Date();
-        IsVaction();      
+        IsVacation();      
         if ($("#alarmSwitch").is(':checked')) {
             Calender();
         }            
