@@ -37,8 +37,7 @@ $(document).ready(function () {
             window.location.href = 'UpdateSchedule.html';
         });
         var temp = new Date();
-        var h = temp.getHours();
-        var day = temp.getDay()+1;           
+        IsVaction();      
         if ($("#alarmSwitch").is(':checked')) {
             Calender();
         }            
@@ -81,6 +80,11 @@ function Process_ResultV(data) {
     else
         alert("שגיאת שרת");    
 }
+function Process_Error()
+{
+    localStorage.setItem("vacation", false);
+    GetDay();
+}
 function GetDay()
 {
     //get schedule of the day from local storage
@@ -101,11 +105,6 @@ function GetDay()
     }
 }
 
-function Process_Error()
-{
-    localStorage.setItem("vacation", false);
-    GetDay();
-}
 function HtmlChanges() {
     //gets html of changes of the day from school website and send them to TodayChanges
     layer=JSON.parse(localStorage.getItem("user")).layer;
