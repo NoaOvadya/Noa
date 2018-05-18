@@ -35,10 +35,10 @@ $(document).ready(function () {
         });
         if(localStorage.getItem("alarm")!=null && !localStorage.getItem("alarm"))
         {
-            $(".switch").append(<input id="alarmSwitch" type="checkbox" ><span class="slider round"></span>)   
+            $(".switch").append("<input id='alarmSwitch' type='checkbox' ><span class='slider round'></span>");   
         }
         else{
-           $(".switch").append(<input id="alarmSwitch" type="checkbox" checked><span class="slider round"></span>);
+           $(".switch").append("<input id='alarmSwitch' type='checkbox' checked><span class='slider round'></span>");
            localStorage.setItem("alarm", true);
            Calender();
         }
