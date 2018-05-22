@@ -1,14 +1,3 @@
-﻿//בעיות:
-//*מקבל עברית בסיסמאות ובאימייל
-
-//דף ראשי:
-//*כיוון שעון מעורר
-
-//*בדיקת לוח בגרויות
-//*התראה למתכונות ובגרויות
-//*מתן אפשרות לבטל שעון להיום
-//*מתן אפשרות לערוך מערכת שעות/הגדרת שעון
-//*הגדרת מערכת חדשה כל שנה(מעבר כיתות אוטומטי)
 
 var days = [, "ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי"];
 $(document).ready(function () {        
@@ -33,6 +22,7 @@ $(document).ready(function () {
             localStorage.setItem("todayT", null);
             window.location.href = 'Register2.html';
         });
+        IsVacation();     
         if(localStorage.getItem("alarm")!=null && !localStorage.getItem("alarm"))
         {
             $(".switch").append("<input id='alarmSwitch' type='checkbox' ><span class='slider round'></span>");   
@@ -42,11 +32,12 @@ $(document).ready(function () {
            localStorage.setItem("alarm", true);
            Calender();
         }
+    
         $("#update").click(function () {
             window.location.href = 'UpdateSchedule.html';
         });
-        var temp = new Date();
-        IsVacation();      
+        
+         
         
 })
 $("#alarmSwitch").click(function(){
