@@ -52,7 +52,7 @@ $("#alarmSwitch").click(function(){
 function IsVacation()
 {
     var temp = new Date();
-    if (temp.getHours>16) {
+    if (temp.getHours()>=21) {
         temp.setDate(temp.getDate() + 1);
     }    
     d = temp.getDate();
@@ -97,8 +97,10 @@ function GetDay()
     //call the HtmlChanges function(in the procces result)    
     var temp = new Date();
     var day = temp.getDay() + 1;
-    if (temp.hours >= 21)
+    if (temp.getHours() >= 21)
         day=day+1;
+    if(day==8)
+        day=1;
     if (day != 7)
     {        
         localStorage.setItem("day", day);
