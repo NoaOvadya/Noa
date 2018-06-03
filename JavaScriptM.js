@@ -22,7 +22,7 @@ $(document).ready(function () {
             localStorage.setItem("todayT", null);
             window.location.href = 'Register2.html';
         });
-        if(localStorage.getItem("alarm")!=null && !localStorage.getItem("alarm"))
+        if(localStorage.getItem("alarm")!=null && localStorage.getItem("alarm")=="false")
         {
             $(".switch").append("<input id='alarmSwitch' type='checkbox' ><span class='slider round'></span>");   
         }
@@ -212,11 +212,10 @@ function BuildSchedule()
         $("#s" + i).append(temp);
         color = "";
     } 
-    if(localStorage.getItem("alarm"))
+    if(localStorage.getItem("alarm")=="true")
     {
         Calender();
     }
-
 }
 function StartHour()
 {
