@@ -49,6 +49,35 @@ $(document).ready(function () {
         
 })
 
+function DownloadV()
+{
+    id="http://hinuch.education.gov.il/lernet/chufshot.ics?ochlusia=2&chag=1";
+    var xhr = new XMLHttpRequest(); 
+    xhr.open("GET", "/ics/download?id=" + id); 
+    xhr.responseType = "blob";
+    xhr.onload = function() {
+    if(xhr.status && xhr.status === 200) {
+        saveCal(xhr.response, "download_" + id);
+    } 
+    xhr.send();
+}
+
+function saveCal(ics, key) {
+    var fileReader = new FileReader();
+
+    fileReader.onload = function (evt) {
+        var result = evt.target.result;
+
+        try {
+            localStorage.setItem(key, result);
+        } catch (e) {
+            console.log("Storage failed: " + e);
+        }
+    };
+
+    fileReader.readAsDataURL(ics);
+}
+}
 function IsVacation()
 {
     var temp = new Date();
