@@ -45,7 +45,7 @@ $(document).ready(function () {
         localStorage.setItem("alarm", false);
     }
 })
-         
+      DownloadV();   
         
 })
 
