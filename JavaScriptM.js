@@ -35,11 +35,7 @@ $(document).ready(function () {
         $("#update").click(function () {
             window.location.href = 'UpdateSchedule.html';
         });
-        
-         
-        
-})
-$("#alarmSwitch").click(function(){
+        $("#alarmSwitch").click(function(){
     if($("#alarmSwitch").is(':checked'))
     {
         localStorage.setItem("alarm", true);
@@ -49,6 +45,10 @@ $("#alarmSwitch").click(function(){
         localStorage.setItem("alarm", false);
     }
 })
+         
+        
+})
+
 function IsVacation()
 {
     var temp = new Date();
