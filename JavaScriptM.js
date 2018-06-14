@@ -15,8 +15,7 @@ $(document).ready(function () {
             localStorage.setItem("user", null);
             localStorage.setItem("subject", null);
             localStorage.setItem("teacher", null);
-            localStorage.setItem("day", null);
-            localStorage.setItem("hours", null);
+            //localStorage.setItem("day", null);            
             localStorage.setItem("changes", null);
             localStorage.setItem("todayS", null);
             localStorage.setItem("todayT", null);
@@ -163,9 +162,6 @@ function TodayChanges(data) {
             day[h] = hours[i].match(/<td style='font-size:20px;font-weight:bold;'>[\s|\S]*?<span/)[0].replace(/<span/, "").replace(/<td style='font-size:20px;font-weight:bold;'>/, "");
         }
     }
-    var d = new Date();
-    var h = d.getHours();    
-    localStorage.setItem("hours", h);
     localStorage.setItem("changes", JSON.stringify(day));
     Today();
 }
