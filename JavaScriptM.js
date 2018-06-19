@@ -1,6 +1,7 @@
 
 var days = [, "ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי"];
-$(document).ready(function () {        
+$(document).ready(function () { 
+    MyHandler.calcSomething(5,7);
     //call the getday or htmlchanges base on hour and day       
         if (JSON.parse(localStorage.getItem("user")) == null ) {
             window.location.href = 'Register2.html';
