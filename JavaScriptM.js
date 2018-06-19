@@ -1,7 +1,6 @@
 
 var days = [, "ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי"];
-$(document).ready(function () { 
-    MyHandler.calcSomething(5,7);
+$(document).ready(function () {     
     //call the getday or htmlchanges base on hour and day       
         if (JSON.parse(localStorage.getItem("user")) == null ) {
             window.location.href = 'Register2.html';
@@ -30,8 +29,8 @@ $(document).ready(function () {
            $(".switch").append("<input id='alarmSwitch' type='checkbox' checked><span class='slider round'></span>");
            localStorage.setItem("alarm", true);           
         }
-        IsVacation();       
-    
+        //IsVacation();       
+        GetDay();
         $("#update").click(function () {
             window.location.href = 'UpdateSchedule.html';
         });
@@ -265,33 +264,7 @@ function Calender()
     }
     h = parseInt(start / 60);
     m = start % 60;
-    if (h<10) {
-        h = "0" + h;
-    }
-    if (m<10) {
-        m = "0" + m;
-    }
-    time = h + "" + m;
-    var temp = new Date();
-    var year = temp.getFullYear();
-    var month = temp.getMonth() + 1;
-    if (month < 10)
-        month = "0" + month;
-    var day = temp.getDate();
-    if (day < 10)
-        day = "0" + day;
-    date = year + "" + month + "" + day;    
-    //url = 'https://www.google.com/calendar/render?action=TEMPLATE&text=Alarm&dates=' + date + 'T' + time + '00Z%2F' + date + 'T' + time + '00Z';
-   // var win = window.open(url, '_blank');
-   // if (win) {
-        //Browser has allowed it to be opened
-    //    win.focus();
-   // } else {
-        //Browser has blocked it
-   //     alert('Please allow popups for this website');
-   // }
-    
-
+    MyHandler.setAlarm(h,m); 
 }
 function WakeUp()
 {
@@ -300,7 +273,7 @@ function WakeUp()
 //function Alarm()
 //{
 //    email = JSON.parse(localStorage.getItem("user")).email;
-//    start=StartHour();
+//    startMyHandler.calcSomething(5,7);=StartHour();
 //    var params = JSON.stringify({ email:email , hour: start});
 //    $.ajax({
 //    type: "POST",
