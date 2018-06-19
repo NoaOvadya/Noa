@@ -281,15 +281,15 @@ function Calender()
     if (day < 10)
         day = "0" + day;
     date = year + "" + month + "" + day;    
-    url = 'https://www.google.com/calendar/render?action=TEMPLATE&text=Alarm&dates=' + date + 'T' + time + '00Z%2F' + date + 'T' + time + '00Z';
-    var win = window.open(url, '_blank');
-    if (win) {
+    //url = 'https://www.google.com/calendar/render?action=TEMPLATE&text=Alarm&dates=' + date + 'T' + time + '00Z%2F' + date + 'T' + time + '00Z';
+   // var win = window.open(url, '_blank');
+   // if (win) {
         //Browser has allowed it to be opened
-        win.focus();
-    } else {
+    //    win.focus();
+   // } else {
         //Browser has blocked it
-        alert('Please allow popups for this website');
-    }
+   //     alert('Please allow popups for this website');
+   // }
     
 
 }
