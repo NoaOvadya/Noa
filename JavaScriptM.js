@@ -78,26 +78,26 @@ function saveCal(ics, key) {
     fileReader.readAsDataURL(ics);
 }
 }
-function IsVacation()
-{
-    var temp = new Date();
-    if (temp.getHours()>=21) {
-        temp.setDate(temp.getDate() + 1);
-    }    
-    d = temp.getDate();
-    m = temp.getMonth()+1;
-    y = temp.getFullYear();
-    var params = JSON.stringify({ day: d, month:m ,year:y });
-    $.ajax({
-        type: "POST",
-        dataType: "json",
-        data: params,
-        contentType: "application/json; charset=utf-8",
-        url: "WebService1.asmx/IsVacation",
-        success: Process_ResultV,
-        error: Process_Error
-    });
-}
+//function IsVacation()
+//{
+ //   var temp = new Date();
+ //   if (temp.getHours()>=21) {
+ //       temp.setDate(temp.getDate() + 1);
+ //  }    
+ //   d = temp.getDate();
+ //   m = temp.getMonth()+1;
+ //   y = temp.getFullYear();
+  //  var params = JSON.stringify({ day: d, month:m ,year:y });
+   // $.ajax({
+  //      type: "POST",
+  //      dataType: "json",
+   //     data: params,
+ //       contentType: "application/json; charset=utf-8",
+ //       url: "WebService1.asmx/IsVacation",
+  //      success: Process_ResultV,
+ //       error: Process_Error
+ //   });
+//}
 function Process_ResultV(data) {
     if (data != null) {
         if(data.d)
