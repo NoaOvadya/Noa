@@ -44,7 +44,7 @@ $(document).ready(function () {
         localStorage.setItem("alarm", false);
     }
 })
-      DownloadV();   
+      //DownloadV();   
         
 })
 function GetDay()
