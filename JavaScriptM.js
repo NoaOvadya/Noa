@@ -15,7 +15,7 @@ $(document).ready(function () {
             localStorage.setItem("user", null);
             localStorage.setItem("subject", null);
             localStorage.setItem("teacher", null);
-            //localStorage.setItem("day", null);            
+            localStorage.setItem("alarm", null);            
             localStorage.setItem("changes", null);
             localStorage.setItem("todayS", null);
             localStorage.setItem("todayT", null);
@@ -73,8 +73,7 @@ function IsVacation()
     }
     if(vaction==true)
     {
-       $("#title").text("חופש");
-       $("#title").css("font-size", "200%");
+       $("#title").text("חופש");       
        $("th").remove();
     }
     else
@@ -94,6 +93,7 @@ function GetDay()
     {        
         localStorage.setItem("day", day);
         $("#title").text("מערכת ליום "+days[day]);
+        $("th").remove();
         HtmlChanges();
     }  
     else
@@ -228,7 +228,17 @@ function Calender()
     d=new Date();
     if(d.getHours()>21 || d.getHours()<h)
     {
-        MyHandler.setAlarm(h,m); 
+        if (d.getHours >= 21) {
+            d.setDate(d.getDate() + 1);
+        }
+        d.setHours(h);
+        d.setMinutes(m);
+        d.setSeconds(0);
+        d.setMilliseconds(0);
+        if(JSON.parse(localStorage.getItem("alarm")).getTime()!=d.getTime()){
+           MyHandler.setAlarm(h,m);
+           localStorage.setItem("alarm", JSON.stringify(d));
+        }        
     }    
 }
 //function WakeUp()
