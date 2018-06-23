@@ -49,7 +49,7 @@ $(document).ready(function () {
 
 function IsVacation()
 {
-    val holiday=[[new Date("09/20/2017"),new Date("09/22/2017"),"ראש השנה"],
+    var holiday=[[new Date("09/20/2017"),new Date("09/22/2017"),"ראש השנה"],
     [new Date("09/29/2017"),new Date("09/30/2017"),"יום כיפור"],
     [new Date("10/04/2017"),new Date("10/13/2017"),"סוכות"],
     [new Date("12/14/2017"),new Date("12/20/2017"),"חנוכה"],
