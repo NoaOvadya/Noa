@@ -46,8 +46,10 @@ $(document).ready(function () {
 })   
         
 })
-val holiday=[
-    [new Date("09/20/2017"),new Date("09/22/2017"),"ראש השנה"],
+
+function IsVacation()
+{
+    val holiday=[[new Date("09/20/2017"),new Date("09/22/2017"),"ראש השנה"],
     [new Date("09/29/2017"),new Date("09/30/2017"),"יום כיפור"],
     [new Date("10/04/2017"),new Date("10/13/2017"),"סוכות"],
     [new Date("12/14/2017"),new Date("12/20/2017"),"חנוכה"],
@@ -57,8 +59,6 @@ val holiday=[
     [new Date("05/03/2018"),new Date("05/03/2018"),"ל\"ג בעומר"],
     [new Date("05/19/2018"),new Date("05/19/2018"),"שבועות"]
   ];
-function IsVacation()
-{
     vation=false;
     d=new Date();
     time=d.getTime();
