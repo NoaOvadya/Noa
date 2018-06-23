@@ -267,14 +267,7 @@ function Auto()
         temp = hours[i] - min;
         if (temp < 0)
             temp = 24 * 60 - temp;
-        s = parseInt(temp / 60) + ":" + temp % 60;
-        if (s.length != 5)
-        {
-            if (s.match(/[\s|\S]*?:/)[0].length != 3)
-                s = "0" + s;
-            else
-                s = s + "0";
-        }        
+        s = [parseInt(temp / 60) , temp % 60];            
         wakeup.push(s);
     }
     return wakeup;
@@ -282,11 +275,14 @@ function Auto()
 function Manual()
 {
     var arr = Auto();
-    var temp;
+    var temp,h,m;
     for (var i = 0; i < 12; i++) {
         temp = $("#" + (i + 1)).val();
-        if (temp != "")
-            arr[i]=temp;
+        if (temp != ""){
+            h=temp[0].ToString()+temp[1].ToString();
+            m=temp[2].ToString()+temp[3].ToString();
+            arr[i]=[h,m];
+        }
     }    
     localStorage.setItem("wakeup", JSON.stringify(arr));
     window.location.href = 'Home.html';
