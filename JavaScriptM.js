@@ -15,7 +15,7 @@ $(document).ready(function () {
             localStorage.setItem("user", null);
             localStorage.setItem("subject", null);
             localStorage.setItem("teacher", null);
-            //localStorage.setItem("alarm", null);            
+            localStorage.setItem("wakeup", null);            
             localStorage.setItem("changes", null);
             localStorage.setItem("todayS", null);
             localStorage.setItem("todayT", null);
@@ -218,13 +218,14 @@ function StartHour()
 }
 function Calender()
 {
-    var hours = [8 * 60, 8 * 60 + 50, 9 * 60 + 50, 10 * 60 + 40, 11 * 60 + 45, 12 * 60 + 35, 13 * 60 + 30, 14 * 60 + 20, 15 * 60 + 10, 16 * 60, 16 * 60 + 50, 17 * 60 + 40];
-    start = hours[StartHour()-1] - 3 * 60;
-    if (start<0) {
-        start = 24 * 60 - start;
-    }
-    h = parseInt(start / 60);
-    m = start % 60;
+    //var hours = [8 * 60, 8 * 60 + 50, 9 * 60 + 50, 10 * 60 + 40, 11 * 60 + 45, 12 * 60 + 35, 13 * 60 + 30, 14 * 60 + 20, 15 * 60 + 10, 16 * 60, 16 * 60 + 50, 17 * 60 + 40];
+    var hours=JSON.parse(localStorage.getItem("wakeup"));
+    start = hours[StartHour()-1];
+    //if (start<0) {
+    //    start = 24 * 60 - start;
+    //}
+    h =start[0];
+    m = start[1];
     d=new Date();
     if(d.getHours()>=21 || d.getHours()<h)
     {        
