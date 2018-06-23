@@ -235,7 +235,7 @@ function Calender()
         d.setMinutes(m);
         d.setSeconds(0);
         d.setMilliseconds(0);
-        if(JSON.parse(localStorage.getItem("alarm"))==null || JSON.parse(localStorage.getItem("alarm")).getTime()!=d.getTime()){
+        if(localStorage.getItem("alarm")==null || JSON.parse(localStorage.getItem("alarm")).getTime()!=d.getTime()){
            MyHandler.setAlarm(h,m);
            localStorage.setItem("alarm", JSON.stringify(d));
         }        
