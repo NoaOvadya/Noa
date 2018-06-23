@@ -29,8 +29,8 @@ $(document).ready(function () {
            $(".switch").append("<input id='alarmSwitch' type='checkbox' checked><span class='slider round'></span>");
            localStorage.setItem("alarm", true);           
         }
-        //IsVacation();       
-        GetDay();
+        IsVacation();       
+        //GetDay();
         $("#update").click(function () {
             window.location.href = 'UpdateSchedule.html';
         });
@@ -43,10 +43,41 @@ $(document).ready(function () {
     else{
         localStorage.setItem("alarm", false);
     }
-})
-      //DownloadV();   
+})   
         
 })
+val Holidays = arrayOf(
+                Holiday("ראש השנה", "20/09/2017", "22/09/2017"),
+                Holiday("יום כיפור", "29/09/2017", "30/09/2017"),
+                Holiday("סוכות", "04/10/2017", "13/10/2017"),
+                Holiday("חנוכה", "14/12/2017", "20/12/2017"),
+                Holiday("פורים", "28/02/2018", "02/03/2018"),
+                Holiday("פסח", "22/03/2018", "07/04/2018"),
+                Holiday("יום העצמאות", "19/04/2018"),
+                Holiday("ל\"ג בעומר", "03/05/2018"),
+                Holiday("שבועות", "19/05/2018", "21/05/2018"))
+function IsVacation()
+{
+    vation=false;
+    for (holiday in Holidays) {
+        if (holiday.isOneDay()) {
+            if (time == holiday.startTime) 
+                vaction=true;
+        } 
+        else {
+            if (time >= holiday.startTime && time <= holiday.endTime) 
+                vaction=true;
+        }        
+    }
+    if(vaction==true)
+    {
+       $("#title").text("חופש");
+       $("#title").css("font-size", "200%");
+       $("th").remove();
+    }
+    else
+        GetDay();
+}
 function GetDay()
 {
     //get schedule of the day from local storage
@@ -198,10 +229,10 @@ function Calender()
         MyHandler.setAlarm(h,m); 
     }    
 }
-function WakeUp()
-{
-    return JSON.parse(localStorage.getItem("wakeup"))[StartHour()-1];    
-}
+//function WakeUp()
+//{
+//    return JSON.parse(localStorage.getItem("wakeup"))[StartHour()-1];    
+//}
 //function Alarm()
 //{
 //    email = JSON.parse(localStorage.getItem("user")).email;
