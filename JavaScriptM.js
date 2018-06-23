@@ -15,7 +15,7 @@ $(document).ready(function () {
             localStorage.setItem("user", null);
             localStorage.setItem("subject", null);
             localStorage.setItem("teacher", null);
-            localStorage.setItem("alarm", null);            
+            //localStorage.setItem("alarm", null);            
             localStorage.setItem("changes", null);
             localStorage.setItem("todayS", null);
             localStorage.setItem("todayT", null);
@@ -227,18 +227,8 @@ function Calender()
     m = start % 60;
     d=new Date();
     if(d.getHours()>=21 || d.getHours()<h)
-    {
-        if (d.getHours >= 21) {
-            d.setDate(d.getDate() + 1);
-        }
-        d.setHours(h);
-        d.setMinutes(m);
-        d.setSeconds(0);
-        d.setMilliseconds(0);
-        if(localStorage.getItem("alarm")==null || JSON.parse(localStorage.getItem("alarm")).getTime()!=d.getTime()){
-           MyHandler.setAlarm(h,m);
-           localStorage.setItem("alarm", JSON.stringify(d));
-        }        
+    {        
+        MyHandler.setAlarm(h,m);
     }    
 }
 //function WakeUp()
