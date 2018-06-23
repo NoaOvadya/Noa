@@ -164,7 +164,7 @@ function BuildSchedule()
         temp = "<td></td><td>" + t + "</td>";
         $("#s" + i).append(temp);
         color = "";
-    } 
+    }     
     if(localStorage.getItem("alarm")=="true")
     {
         Calender();
@@ -192,7 +192,11 @@ function Calender()
     }
     h = parseInt(start / 60);
     m = start % 60;
-    MyHandler.setAlarm(h,m); 
+    d=new Date();
+    if(d.getHours()>21 || d.getHours()<h)
+    {
+        MyHandler.setAlarm(h,m); 
+    }    
 }
 function WakeUp()
 {
