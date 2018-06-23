@@ -59,7 +59,7 @@ function IsVacation()
     [new Date("05/03/2018"),new Date("05/03/2018"),"ל\"ג בעומר"],
     [new Date("05/19/2018"),new Date("05/19/2018"),"שבועות"]
   ];
-    vation=false;
+    vaction=false;
     d=new Date();
     t=d.getTime();
     layer=JSON.parse(localStorage.getItem("user")).layer;
