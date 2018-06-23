@@ -46,28 +46,30 @@ $(document).ready(function () {
 })   
         
 })
-val Holidays = arrayOf(
-                Holiday("ראש השנה", "20/09/2017", "22/09/2017"),
-                Holiday("יום כיפור", "29/09/2017", "30/09/2017"),
-                Holiday("סוכות", "04/10/2017", "13/10/2017"),
-                Holiday("חנוכה", "14/12/2017", "20/12/2017"),
-                Holiday("פורים", "28/02/2018", "02/03/2018"),
-                Holiday("פסח", "22/03/2018", "07/04/2018"),
-                Holiday("יום העצמאות", "19/04/2018"),
-                Holiday("ל\"ג בעומר", "03/05/2018"),
-                Holiday("שבועות", "19/05/2018", "21/05/2018"))
+val holiday=[
+    [new Date("09/20/2017"),new Date("09/22/2017"),"ראש השנה"],
+    [new Date("09/29/2017"),new Date("09/30/2017"),"יום כיפור"],
+    [new Date("10/04/2017"),new Date("10/13/2017"),"סוכות"],
+    [new Date("12/14/2017"),new Date("12/20/2017"),"חנוכה"],
+    [new Date("02/28/2018"),new Date("03/02/2018"),"פורים"],
+    [new Date("03/22/2018"),new Date("04/07/2018"),"פסח"],
+    [new Date("04/19/2018"),new Date("04/19/2018"),"יום העצמאות"],
+    [new Date("05/03/2018"),new Date("05/03/2018"),"ל\"ג בעומר"],
+    [new Date("05/19/2018"),new Date("05/19/2018"),"שבועות"]
+  ];
 function IsVacation()
 {
     vation=false;
-    for (holiday in Holidays) {
-        if (holiday.isOneDay()) {
-            if (time == holiday.startTime) 
-                vaction=true;
-        } 
-        else {
-            if (time >= holiday.startTime && time <= holiday.endTime) 
-                vaction=true;
-        }        
+    d=new Date();
+    time=d.getTime();
+    layer=JSON.parse(localStorage.getItem("user")).layer;
+    for (i = 0; i < holidays.length; i++)
+        if (time >= holiday[i][0].getTime() && time <= holiday[i][1].getTime()) {            
+            vaction=true;
+        }  
+        if( holiday[i][2]=="יום העצמאות" && time > holiday[i][0].getTime() && layer==12){
+            vaction=true;   
+        }
     }
     if(vaction==true)
     {
