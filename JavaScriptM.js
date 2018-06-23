@@ -63,7 +63,7 @@ function IsVacation()
     d=new Date();
     time=d.getTime();
     layer=JSON.parse(localStorage.getItem("user")).layer;
-    for (i = 0; i < holidays.length; i++)
+    for (i = 0; i < holidays.length; i++){
         if (time >= holiday[i][0].getTime() && time <= holiday[i][1].getTime()) {            
             vaction=true;
         }  
