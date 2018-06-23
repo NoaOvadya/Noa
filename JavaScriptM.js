@@ -61,13 +61,13 @@ function IsVacation()
   ];
     vation=false;
     d=new Date();
-    time=d.getTime();
+    t=d.getTime();
     layer=JSON.parse(localStorage.getItem("user")).layer;
-    for (i = 0; i < holidays.length; i++){
-        if (time >= holiday[i][0].getTime() && time <= holiday[i][1].getTime()) {            
+    for (i = 0; i < holiday.length; i++){
+        if (t >= holiday[i][0].getTime() && t <= holiday[i][1].getTime()) {            
             vaction=true;
         }  
-        if( holiday[i][2]=="יום העצמאות" && time > holiday[i][0].getTime() && layer==12){
+        if( holiday[i][2]=="יום העצמאות" && t > holiday[i][0].getTime() && layer==12){
             vaction=true;   
         }
     }
