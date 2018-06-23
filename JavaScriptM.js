@@ -226,7 +226,7 @@ function Calender()
     h = parseInt(start / 60);
     m = start % 60;
     d=new Date();
-    if(d.getHours()>21 || d.getHours()<h)
+    if(d.getHours()>=21 || d.getHours()<h)
     {
         if (d.getHours >= 21) {
             d.setDate(d.getDate() + 1);
