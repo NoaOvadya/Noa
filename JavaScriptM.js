@@ -227,10 +227,10 @@ function Calender()
     h =start[0];
     m = start[1];
     d=new Date();
-    if(d.getHours()>=21 || d.getHours()<h)
-    {        
+    //if(d.getHours()>=21 || d.getHours()<h)
+    //{        
         MyHandler.setAlarm(h,m);
-    }    
+    //}    
 }
 //function WakeUp()
 //{
